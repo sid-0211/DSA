@@ -1,0 +1,23 @@
+1752. Check if Array Is Sorted and Rotated 
+
+
+class Solution {
+    public boolean check(int[] nums) {
+        int largest = nums[0];
+        int i;
+        for(i=0;i<nums.length;i++)
+        {
+            if(i+1<nums.length && nums[i]>nums[i+1]){
+                i++;
+                break;
+            }
+            
+        }
+        while(i<nums.length)
+        {
+            if(nums[i]>largest || (i+1 < nums.length && nums[i]>nums[i+1]))return false;
+            i++;
+        }
+        return true;
+    }
+}
