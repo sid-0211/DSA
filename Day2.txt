@@ -1,5 +1,5 @@
 26. Remove Duplicates from Sorted Array
-
+++++++++++++++++++++++ Optimized Solution ++++++++++++++++++++++
 class Solution {
     public int removeDuplicates(int[] nums) {
         int k = 0;
@@ -13,5 +13,54 @@ class Solution {
             }
         }
     return k+1;
+    }
+}
+
+
+
+189. Rotate Array
+++++++++++++++++++++++ Brute Force ++++++++++++++++++++++
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if(k==0) return;
+        k = k%(nums.length);
+
+        int i=0;
+        int current;
+        int next;
+        while(i < k)
+        {
+            current = nums[0];
+            for(int j=0 ; j+1 < nums.length; j++)
+            {
+                next = nums[j+1];
+                nums[j+1] = current;
+                current = next;
+            }
+            nums[0] = current;
+
+
+            i++;
+        }
+    }
+}
+
+++++++++++++++++++++++ Optimised Solution ++++++++++++++++++++++
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k % n;
+        Reverse(nums, 0, n - 1);
+        Reverse(nums, 0, k - 1);
+        Reverse(nums, k, n - 1);
+    }
+    void Reverse(int[] nums, int s, int e) {
+        while (e > s) {
+            int temp = nums[s];
+            nums[s] = nums[e];
+            nums[e] = temp;
+            s++;
+            e--;
+        }
     }
 }
